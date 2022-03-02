@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.22)
 
+add_definitions(-DSKYRIM_AE)
+
 project(
 	ExampleProject
 	VERSION 1.0.0
