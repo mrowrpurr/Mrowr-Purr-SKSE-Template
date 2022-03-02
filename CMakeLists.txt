@@ -1,5 +1,22 @@
 cmake_minimum_required(VERSION 3.22)
 
+option(SKYRIM_AE "Compile plugin for Skyrim AE" OFF)
+option(SKYRIM_SE "Compile plugin for Skyrim SE" OFF)
+option(SKYRIM_VR "Compile plugin for Skyrim VR" OFF)
+
+message(INFO "COMPILING FOR SKYRIM AE: ${SKYRIM_AE}")
+message(INFO "COMPILING FOR SKYRIM SE: ${SKYRIM_SE}")
+message(INFO "COMPILING FOR SKYRIM VR: ${SKYRIM_VR}")
+
+# message(INFO BEFORE)
+# return()
+# message(INFO AFTER)
+
+if(NOT ${SKYRIM_AE} AND NOT ${SKYRIM_SE} AND NOT ${SKYRIM_VR})
+	message(ERROR "Run cmake using one of the build/ .bat files for building Skyrim")
+	return()
+endif()
+
 add_definitions(-DSKYRIM_AE)
 
 project(
@@ -29,4 +46,5 @@ option(COPY_OUTPUT "copy the output of build operations to the game directory" O
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
 
 add_subdirectory(src)
+
 include(cmake/packaging.cmake)
