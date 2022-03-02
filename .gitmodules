@@ -7,3 +7,9 @@
 [submodule "external/vr"]
 	path = CommonLib/vr
 	url = https://github.com/mrowrpurr/CommonLibVR.git
+[submodule "vcpkg/AE"]
+	path = vcpkg/AE
+	url = https://github.com/microsoft/vcpkg.git
+[submodule "vcpkg/SE"]
+	path = vcpkg/SE
+	url = https://github.com/microsoft/vcpkg.git

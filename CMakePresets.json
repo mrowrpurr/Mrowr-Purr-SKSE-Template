@@ -8,7 +8,7 @@
       "generator": "Ninja",
       "binaryDir": "${sourceDir}/out/build/${presetName}",
       "installDir": "${sourceDir}/out/install/${presetName}",
-      "toolchainFile": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+      "toolchainFile": "vcpkg/SE/scripts/buildsystems/vcpkg.cmake",
       "environment": {
         "VCPKG_FEATURE_FLAGS": "manifests,versions,binarycaching,registries"
       },
@@ -23,7 +23,7 @@
       "cacheVariables": {
         "CMAKE_TOOLCHAIN_FILE": {
           "type": "STRING",
-          "value": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
+          "value": "vcpkg/SE/scripts/buildsystems/vcpkg.cmake"
         }
       },
       "hidden": true

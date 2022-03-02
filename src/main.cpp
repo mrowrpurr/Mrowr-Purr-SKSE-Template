@@ -29,6 +29,7 @@ namespace
 	}
 }
 
+#ifdef SKYRIM_AE
 extern "C" DLLEXPORT constinit auto SKSEPlugin_Version = []() {
 	SKSE::PluginVersionData v;
 
@@ -40,6 +41,7 @@ extern "C" DLLEXPORT constinit auto SKSEPlugin_Version = []() {
 
 	return v;
 }();
+#endif
 
 void OnEvent(SKSE::MessagingInterface::Message* event) {
 	if (event->type == SKSE::MessagingInterface::kDataLoaded) {
@@ -56,6 +58,23 @@ extern "C" DLLEXPORT bool SKSEAPI SKSEPlugin_Load(const SKSE::LoadInterface* a_s
 	SKSE::Init(a_skse);
 
 	SKSE::GetMessagingInterface()->RegisterListener(OnEvent);
+
+	return true;
+}
+
+extern "C" DLLEXPORT bool SKSEAPI SKSEPlugin_Query(const SKSE::QueryInterface* a_skse, SKSE::PluginInfo* a_info) {
+	a_info->infoVersion = SKSE::PluginInfo::kVersion;
+	a_info->name = Plugin::NAME.data();
+	a_info->version = Plugin::VERSION.pack();
+
+	if (a_skse->IsEditor()) {
+		return false;
+	}
+
+	const auto ver = a_skse->RuntimeVersion();
+	if (ver < SKSE::RUNTIME_1_5_39) {
+		return false;
+	}
 
 	return true;
 }
