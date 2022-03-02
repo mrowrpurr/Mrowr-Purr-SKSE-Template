@@ -41,12 +41,21 @@ extern "C" DLLEXPORT constinit auto SKSEPlugin_Version = []() {
 	return v;
 }();
 
+void OnEvent(SKSE::MessagingInterface::Message* event) {
+	if (event->type == SKSE::MessagingInterface::kDataLoaded) {
+		auto* consoleLog = RE::ConsoleLog::GetSingleton();
+		consoleLog->Print("Hello from Mrowr Purr!");
+	}
+}
+
 extern "C" DLLEXPORT bool SKSEAPI SKSEPlugin_Load(const SKSE::LoadInterface* a_skse)
 {
 	InitializeLog();
 	logger::info("{} v{}"sv, Plugin::NAME, Plugin::VERSION.string());
 
 	SKSE::Init(a_skse);
+
+	SKSE::GetMessagingInterface()->RegisterListener(OnEvent);
 
 	return true;
 }
