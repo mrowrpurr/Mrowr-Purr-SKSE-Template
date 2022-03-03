@@ -88,7 +88,7 @@ elseif(${SKYRIM_SE})
             CommonLibSSE::CommonLibSSE
     )
 elseif(${SKYRIM_VR})
-	add_subdirectory("${ROOT_DIR}/CommonLib/VR" CommonLibSSE EXCLUDE_FROM_ALL)
+	add_subdirectory("${ROOT_DIR}/CommonLib/VR" CommonLibVR EXCLUDE_FROM_ALL)
     target_link_libraries(
         "${PROJECT_NAME}"
         PRIVATE

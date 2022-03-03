@@ -1,1 +1,1 @@
-cmake --build build
+cmake --build build --config Debug --target ALL_BUILD -j 18 --
