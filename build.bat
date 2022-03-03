@@ -1,2 +1,1 @@
-cd build
-./BUILD_AE.bat
+cmake --build build
