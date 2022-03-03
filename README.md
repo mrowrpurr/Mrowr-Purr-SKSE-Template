@@ -22,12 +22,12 @@ git submodule update
 
 ## Setup Environment Variables
 
-This template uses environment variables to specify
-where compiled SKSE plugin .dlls should be output.
+This template uses environment variables to specify where
+compiled SKSE plugin .dlls and Papyrus files should be output.
 
-- `SKSE_SKYRIM_AE_DLLS="C:\My Mods\My AE Development\SKSE\Plugins"`
-- `SKSE_SKYRIM_SE_DLLS="C:\My Mods\My SE Development\SKSE\Plugins"`
-- `SKSE_SKYRIM_VR_DLLS="C:\My Mods\My VR Development\SKSE\Plugins"`
+- `SKSE_SKYRIM_AE_DEV="C:\My Mods\My AE Development\"`
+- `SKSE_SKYRIM_SE_DEV="C:\My Mods\My SE Development\"`
+- `SKSE_SKYRIM_VR_DEV="C:\My Mods\My VR Development\"`
 
 > When the appropriate environment variable(s) is/are not set,  
 > compiled plugins are output in the output/ directory. 

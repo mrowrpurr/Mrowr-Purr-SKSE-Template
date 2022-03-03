@@ -105,39 +105,34 @@ target_precompile_headers(
 
 # Get output directory based on configured version of Skyrim
 if(${SKYRIM_AE})
-	set(OUTPUT_FOLDER "$ENV{SKSE_SKYRIM_AE_DLLS}")
-	if(NOT EXISTS "${OUTPUT_FOLDER}")
-		set(OUTPUT_FOLDER "${ROOT_DIR}/output/AE")
-	endif()
+	set(MOD_FOLDER "$ENV{SKSE_SKYRIM_AE_DEV}")
 elseif(${SKYRIM_SE})
-	set(OUTPUT_FOLDER "$ENV{SKSE_SKYRIM_SE_DLLS}")
-	if(NOT EXISTS "${OUTPUT_FOLDER}")
-		set(OUTPUT_FOLDER "${ROOT_DIR}/output/SE")
-	endif()
+	set(MOD_FOLDER "$ENV{SKSE_SKYRIM_SE_DEV}")
 elseif(${SKYRIM_VR})
-	set(OUTPUT_FOLDER "$ENV{SKSE_SKYRIM_VR_DLLS}")
-	if(NOT EXISTS "${OUTPUT_FOLDER}")
-		set(OUTPUT_FOLDER "${ROOT_DIR}/output/VR")
-	endif()
+	set(MOD_FOLDER "$ENV{SKSE_SKYRIM_VR_DEV}")
 endif()
+if(NOT EXISTS "${MOD_FOLDER}")
+	set(MOD_FOLDER "${ROOT_DIR}/output/${SKYRIM_VERSION}")
+endif()
+set(DLL_FOLDER "${MOD_FOLDER}/SKSE/Plugins")
 
 # Create output directory if it does not exist
-if(NOT EXISTS "${OUTPUT_FOLDER}")
-	add_custom_command(
-		TARGET "${PROJECT_NAME}"
-		POST_BUILD
-		COMMAND "${CMAKE_COMMAND}" -E make_directory "${OUTPUT_FOLDER}"
-		VERBATIM
-	)
-endif()
+add_custom_command(
+	TARGET "${PROJECT_NAME}"
+	POST_BUILD
+	COMMAND "${CMAKE_COMMAND}" -E make_directory "${DLL_FOLDER}"
+	VERBATIM
+)
 
-MESSAGE(INFO "Build will output .dll and .pdb to ${OUTPUT_FOLDER}")
+MESSAGE(INFO "Build will output .dll and .pdb to ${DLL_FOLDER}")
 
 # Copy the output .dll and debug .pdb to the configured output directory
 add_custom_command(
 	TARGET "${PROJECT_NAME}"
 	POST_BUILD
-	COMMAND "${CMAKE_COMMAND}" -E copy_if_different "$<TARGET_FILE:${PROJECT_NAME}>" "${OUTPUT_FOLDER}"
-	COMMAND "${CMAKE_COMMAND}" -E copy_if_different "$<TARGET_PDB_FILE:${PROJECT_NAME}>" "${OUTPUT_FOLDER}"
+	COMMAND "${CMAKE_COMMAND}" -E copy_if_different "$<TARGET_FILE:${PROJECT_NAME}>" "${DLL_FOLDER}"
+	COMMAND "${CMAKE_COMMAND}" -E copy_if_different "$<TARGET_PDB_FILE:${PROJECT_NAME}>" "${DLL_FOLDER}"
+	COMMAND "${CMAKE_COMMAND}" -E copy_directory "${ROOT_DIR}/Scripts" "${MOD_FOLDER}/Scripts"
+	COMMAND "${CMAKE_COMMAND}" -E copy_directory "${ROOT_DIR}/Source" "${MOD_FOLDER}/Source"
 	VERBATIM
 )

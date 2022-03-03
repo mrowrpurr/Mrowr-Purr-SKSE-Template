@@ -33,6 +33,7 @@ namespace {
 
 	bool PapyrusFunctions(RE::BSScript::IVirtualMachine* vm) {
 		vm->RegisterFunction("HelloWorld", "MyPapyrusScript", HelloPapyrus);
+		return true;
 	}
 }
 
