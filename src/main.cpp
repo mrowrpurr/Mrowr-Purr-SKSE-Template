@@ -1,3 +1,5 @@
+#include <format>
+
 namespace {
 	void InitializeLog() {
 		auto path = logger::log_directory();
@@ -16,8 +18,25 @@ namespace {
 		spdlog::set_default_logger(std::move(log));
 		spdlog::set_pattern("%g(%#): [%^%l%$] %v"s);
 	}
+
+	void OnEvent(SKSE::MessagingInterface::Message* event) {
+		// kDataLoaded
+		if (event->type == SKSE::MessagingInterface::kDataLoaded) {
+			auto* consoleLog = RE::ConsoleLog::GetSingleton();
+			consoleLog->Print("Hello from Example SKSE plugin!");
+		}
+	}
+
+	std::string_view HelloPapyrus(StaticFunctionTag*, std::string_view text) {
+		return std::format("Hi Papyrus, this is C++! You passed the text: '{}'", text);
+	}
+
+	bool PapyrusFunctions(RE::BSScript::IVirtualMachine* vm) {
+		vm->RegisterFunction("HelloWorld", "MyPapyrusScript", HelloPapyrus);
+	}
 }
 
+// ...
 #ifdef SKYRIM_AE
 extern "C" DLLEXPORT constinit auto SKSEPlugin_Version = []() {
 	SKSE::PluginVersionData v;
@@ -32,21 +51,19 @@ extern "C" DLLEXPORT constinit auto SKSEPlugin_Version = []() {
 }();
 #endif
 
-void OnEvent(SKSE::MessagingInterface::Message* event) {
-	if (event->type == SKSE::MessagingInterface::kDataLoaded) {
-		auto* consoleLog = RE::ConsoleLog::GetSingleton();
-		consoleLog->Print("Hello from Example SKSE plugin!");
-	}
-}
-
-extern "C" DLLEXPORT bool SKSEAPI SKSEPlugin_Load(const SKSE::LoadInterface* a_skse)
-{
+extern "C" DLLEXPORT bool SKSEAPI SKSEPlugin_Load(const SKSE::LoadInterface* a_skse) {
+	// ...
 	InitializeLog();
 	logger::info("{} v{}"sv, Plugin::NAME, Plugin::VERSION.string());
 
+	// ...
 	SKSE::Init(a_skse);
 
+	// ...
 	SKSE::GetMessagingInterface()->RegisterListener(OnEvent);
+
+	// ...
+	SKSE::GetPapyrusInterface()->Register(PapyrusFunctions);
 
 	return true;
 }

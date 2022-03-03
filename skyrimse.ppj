@@ -1,0 +1,52 @@
+<?xml version='1.0'?>
+<PapyrusProject xmlns="PapyrusProject.xsd" 
+    Flags="TESV_Papyrus_Flags.flg" 
+    Game="sse"
+    Output="Scripts" 
+    Anonymize="false" 
+    Optimize="false" 
+    Release="false" 
+    Zip="false"
+    Package="false"
+    Final="false">
+    <Variables>
+        <Variable Name="ModName" Value="ExampleProject" />
+        <Variable Name="ModVersion" Value="1.0.0" />
+        <Variable Name="ImportsFolder" Value="C:\Users\mrowr\Dropbox\Skyrim\Papyrus Imports" />
+    </Variables>
+    <Imports>
+        <Import>@ImportsFolder\SKSE</Import>
+        <Import>C:\Program Files (x86)\Steam\steamapps\common\Skyrim Special Edition\Data\Scripts\Source</Import>
+    </Imports>
+    <Folders>
+        <!-- Relative path to folder containing .psc Papyrus source code files for this project -->
+        <Folder>./Scripts/Source</Folder>
+    </Folders>
+    <!-- The following section is for .bsa archives. You can enable it by setting Package="true" in the PapyrusProject -->
+    <Packages Output=".">
+        <Package Name="@ModName" RootDir=".">
+            <!-- <Match In="interface\translations">*.txt</Match> -->
+        </Package>
+        <!-- If you have any texture files, uncomment the following to create a Textures .bsa archive with texture files -->
+        <!-- <Package Name="@ModName - Textures" RootDir=".">
+            <Include>*.dds</Include>
+        </Package> -->
+    </Packages>
+    <!-- The following section is for .zip archive. You can enable it by setting Zip="true" in the PapyrusProject -->
+    <ZipFiles Output="Build">
+        <ZipFile Name="@ModName" RootDir="." Compression="deflate">
+            <Include>@ModName.esp</Include>
+            <Include NoRecurse="true">*.bsa</Include>
+            <Match In="Scripts">*.pex</Match>
+            <Match In="Scripts\Source">*.psc</Match>
+        </ZipFile>
+    </ZipFiles>
+    <PreBuildEvent Description="Copy .psc files from Scripts\Source into Source\" UseInBuild="true">
+        <Command>RD /S /Q Source</Command>
+        <Command>xcopy Scripts\Source\ Source\ /E</Command>
+    </PreBuildEvent>
+    <!-- This will remove any *.bsa files in this directory *after* the build, if there are any. Set UseInBuild="false" to disable. -->
+    <!-- <PostBuildEvent Description="Post-Build Remove BSA Files" UseInBuild="true">
+        <Command>del /s /q /f *.bsa</Command>
+    </PostBuildEvent> -->
+</PapyrusProject>
