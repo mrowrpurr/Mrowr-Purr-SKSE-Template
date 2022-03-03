@@ -35,7 +35,7 @@ extern "C" DLLEXPORT constinit auto SKSEPlugin_Version = []() {
 void OnEvent(SKSE::MessagingInterface::Message* event) {
 	if (event->type == SKSE::MessagingInterface::kDataLoaded) {
 		auto* consoleLog = RE::ConsoleLog::GetSingleton();
-		consoleLog->Print("Hello from Mrowr Purr!");
+		consoleLog->Print("Hello from Example SKSE plugin!");
 	}
 }
 
