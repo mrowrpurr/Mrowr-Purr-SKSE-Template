@@ -75,16 +75,26 @@ target_include_directories(
 # CommonLib
 if(${SKYRIM_AE})
 	add_subdirectory("${ROOT_DIR}/CommonLib/AE" CommonLibSSE EXCLUDE_FROM_ALL)
+    target_link_libraries(
+        "${PROJECT_NAME}"
+        PRIVATE
+            CommonLibSSE::CommonLibSSE
+    )
 elseif(${SKYRIM_SE})
 	add_subdirectory("${ROOT_DIR}/CommonLib/SE" CommonLibSSE EXCLUDE_FROM_ALL)
+    target_link_libraries(
+        "${PROJECT_NAME}"
+        PRIVATE
+            CommonLibSSE::CommonLibSSE
+    )
 elseif(${SKYRIM_VR})
 	add_subdirectory("${ROOT_DIR}/CommonLib/VR" CommonLibSSE EXCLUDE_FROM_ALL)
+    target_link_libraries(
+        "${PROJECT_NAME}"
+        PRIVATE
+            CommonLibVR::CommonLibVR
+    )
 endif()
-target_link_libraries(
-	"${PROJECT_NAME}"
-	PRIVATE
-		CommonLibSSE::CommonLibSSE
-)
 
 # Precompiled Headers (PCH)
 target_precompile_headers(
