@@ -95,19 +95,19 @@ target_precompile_headers(
 
 # Get output directory based on configured version of Skyrim
 if(${SKYRIM_AE})
-	set(OUTPUT_FOLDER "$env{SKSE_SKYRIM_AE_DLLS}")
-	if(NOT "${OUTPUT_FOLDER}" OR NOT EXISTS "${OUTPUT_FOLDER}")
-		set(OUTPUT_FOLDER "output/AE")
+	set(OUTPUT_FOLDER "$ENV{SKSE_SKYRIM_AE_DLLS}")
+	if(NOT EXISTS "${OUTPUT_FOLDER}")
+		set(OUTPUT_FOLDER "${ROOT_DIR}/output/AE")
 	endif()
 elseif(${SKYRIM_SE})
-	set(OUTPUT_FOLDER "$env{SKSE_SKYRIM_SE_DLLS}")
-	if(NOT "${OUTPUT_FOLDER}" OR NOT EXISTS "${OUTPUT_FOLDER}")
-		set(OUTPUT_FOLDER "output/SE")
+	set(OUTPUT_FOLDER "$ENV{SKSE_SKYRIM_SE_DLLS}")
+	if(NOT EXISTS "${OUTPUT_FOLDER}")
+		set(OUTPUT_FOLDER "${ROOT_DIR}/output/SE")
 	endif()
 elseif(${SKYRIM_VR})
-	set(OUTPUT_FOLDER "$env{SKSE_SKYRIM_VR_DLLS}")
-	if(NOT "${OUTPUT_FOLDER}" OR NOT EXISTS "${OUTPUT_FOLDER}")
-		set(OUTPUT_FOLDER "output/VR")
+	set(OUTPUT_FOLDER "$ENV{SKSE_SKYRIM_VR_DLLS}")
+	if(NOT EXISTS "${OUTPUT_FOLDER}")
+		set(OUTPUT_FOLDER "${ROOT_DIR}/output/VR")
 	endif()
 endif()
 
@@ -120,6 +120,8 @@ if(NOT EXISTS "${OUTPUT_FOLDER}")
 		VERBATIM
 	)
 endif()
+
+MESSAGE(INFO "Build will output .dll and .pdb to ${OUTPUT_FOLDER}")
 
 # Copy the output .dll and debug .pdb to the configured output directory
 add_custom_command(
