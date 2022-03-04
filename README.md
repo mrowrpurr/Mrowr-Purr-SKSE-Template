@@ -190,7 +190,33 @@ For CommonLibVR, I will try to keep mrowrpurr/CommonLibVR up-to-date. Otherwise 
 
 # Upgrading to Newer vcpkg Packages
 
+Just like `CommonLib` projects, `vcpkg` is included in this project as a submodule with separate versions for each version of Skyrim.
+
+Why? Why not just have 1 `vcpkg` globally on the system? Or 1 `vcpkg` for the repository?
+
+Sometimes CommonLibSSE/CommonLibVR don't work with the latest versions of public packages, so - to ensure this project tempalte **always compiles** - I have submodules for `vcpkg` for each version of Skyrim pinned to a specific version.
+
+To update `vcpkg` for any version of Skyrim:
+
+```
+# Update AE (or SE or VR)
+cd vcpkg/AE
+git checkout master
+git pull origin master
+```
+
 # Working with Papyrus scripts
+
+One of the awesome features of Skyrim Script Extender (SKSE) is that it can **extend scripts**.
+
+```cpp
+SKSE::GetPapyrusInterface()->Register(PapyrusFunctions);
+```
+
+In addition to being configured as a C++ CMake project,
+this project folder is also configured as a Papyrus Project.
+
+<... TODO DOCUMENTATION ...>
 
 ---
 
