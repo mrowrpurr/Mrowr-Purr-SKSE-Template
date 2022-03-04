@@ -164,6 +164,25 @@ add_custom_command(
 	VERBATIM
 )
 
+# Copy Scripts/ and/or Source/ if they are present (at prepare time)
+if(EXISTS "${ROOT_DIR}/Scripts")
+	add_custom_command(
+		TARGET "${PROJECT_NAME}"
+		POST_BUILD
+		COMMAND "${CMAKE_COMMAND}" -E copy_directory "${ROOT_DIR}/Scripts" "${MOD_FOLDER}/Scripts"
+		VERBATIM
+	)
+endif()
+if(EXISTS "${ROOT_DIR}/Source")
+	add_custom_command(
+		TARGET "${PROJECT_NAME}"
+		POST_BUILD
+		COMMAND "${CMAKE_COMMAND}" -E copy_directory "${ROOT_DIR}/Source" "${MOD_FOLDER}/Source"
+		VERBATIM
+	)
+endif()
+
+# Copy .esp .esm .esl files, if present (at prepare time)
 if(PLUGIN_FILES)
 	add_custom_command(
 		TARGET "${PROJECT_NAME}"
