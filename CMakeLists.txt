@@ -36,5 +36,12 @@ elseif(${SKYRIM_VR})
 	set(SKYRIM_VERSION VR)
 endif()
 
+# Enable testing
+enable_testing()
+
+# Process the .in templates in the cmake/ folder for Plugin.h and version.rc
+list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
+
 # Process the CMakeLists.txt in the src/ folder
 add_subdirectory(src)
+add_subdirectory(test)
