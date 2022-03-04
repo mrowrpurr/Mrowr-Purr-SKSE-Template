@@ -17,7 +17,7 @@ option(SKYRIM_VR "Compile plugin for Skyrim VR" OFF)
 
 # Exit if no Skyrim version was specified
 if(NOT ${SKYRIM_AE} AND NOT ${SKYRIM_SE} AND NOT ${SKYRIM_VR})
-	message(ERROR "Run cmake using one of the build/ .bat files for building Skyrim")
+	message(FATAL_ERROR "Run cmake using one of the build/ .bat files for building Skyrim")
 	return()
 endif()
 

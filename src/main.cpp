@@ -27,7 +27,7 @@ namespace {
 		}
 	}
 
-	std::string_view HelloPapyrus(StaticFunctionTag*, std::string_view text) {
+	std::string_view HelloPapyrus(RE::StaticFunctionTag*, std::string_view text) {
 		return std::format("Hi Papyrus, this is C++! You passed the text: '{}'", text);
 	}
 

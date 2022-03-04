@@ -105,15 +105,31 @@ target_precompile_headers(
 
 # Get output directory based on configured version of Skyrim
 if(${SKYRIM_AE})
-	set(MOD_FOLDER "$ENV{SKSE_SKYRIM_AE_DEV}")
+	if(DEFINED ENV{SKSE_SKYRIM_AE_DEV})
+		set(MOD_FOLDER $ENV{SKSE_SKYRIM_AE_DEV})
+	elseif(DEFINED ENV{SKYRIM_MODS})
+		set(MOD_FOLDER "$ENV{SKYRIM_MODS}/${PROJECT_NAME} - ${SKYRIM_VERSION}")
+	else()
+		set(MOD_FOLDER "${ROOT_DIR}/output/${SKYRIM_VERSION}")
+	endif()
 elseif(${SKYRIM_SE})
-	set(MOD_FOLDER "$ENV{SKSE_SKYRIM_SE_DEV}")
+	if(DEFINED ENV{SKSE_SKYRIM_SE_DEV})
+		set(MOD_FOLDER $ENV{SKSE_SKYRIM_SE_DEV})
+	elseif(DEFINED ENV{SKYRIM_MODS})
+		set(MOD_FOLDER "$ENV{SKYRIM_MODS}/${PROJECT_NAME} - ${SKYRIM_VERSION}")
+	else()
+		set(MOD_FOLDER "${ROOT_DIR}/output/${SKYRIM_VERSION}")
+	endif()
 elseif(${SKYRIM_VR})
-	set(MOD_FOLDER "$ENV{SKSE_SKYRIM_VR_DEV}")
+	if(DEFINED ENV{SKSE_SKYRIM_VR_DEV})
+		set(MOD_FOLDER $ENV{SKSE_SKYRIM_VR_DEV})
+	elseif(DEFINED ENV{SKYRIM_MODS})
+		set(MOD_FOLDER "$ENV{SKYRIM_MODS}/${PROJECT_NAME} - ${SKYRIM_VERSION}")
+	else()
+		set(MOD_FOLDER "${ROOT_DIR}/output/${SKYRIM_VERSION}")
+	endif()
 endif()
-if(NOT EXISTS "${MOD_FOLDER}")
-	set(MOD_FOLDER "${ROOT_DIR}/output/${SKYRIM_VERSION}")
-endif()
+
 set(DLL_FOLDER "${MOD_FOLDER}/SKSE/Plugins")
 
 # Create output directory if it does not exist
@@ -124,7 +140,11 @@ add_custom_command(
 	VERBATIM
 )
 
-MESSAGE(INFO "Build will output .dll and .pdb to ${DLL_FOLDER}")
+# Print the paths that files will be output to when the project is built
+message("Build will output .dll and .pdb to ${DLL_FOLDER}")
+if(EXISTS Scripts)
+	message("Build will output Papyrus scripts to ${MOD_FOLDER}")
+endif()
 
 # Copy the output .dll and debug .pdb to the configured output directory
 add_custom_command(
