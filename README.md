@@ -2,9 +2,14 @@
 
 > _If you use this template, **please make your SKSE plugin Open Source**_ ✨
 
-- [Dependencies](#)
-- [Setup Plugin Name and Version](#)
-- [Configure Open Source License](#)
+`<Insert YouTube Tutorial Video Here>`
+
+# Overview
+
+- [Dependencies](#dependencies)
+- [Download or Use Project Template](#download-or-use-project-template)
+- [Setup Plugin Name and Version](#setup-plugin-name-and-version)
+- [Configure Open Source License](#configure-open-source-license)
 - [Setup Project Folder](#)
 - [Setup Environment Variables](#)
 - [Building the project for different versions of Skyrim](#)
@@ -16,9 +21,23 @@
 - [git](https://git-scm.com/downloads)
 - [CMake](https://cmake.org/download/)
 
+# Download or Use Project Template
+
+The easiest way to get started it by using the **`Use this template`** button on this GitHub repository.
+
+That will create a copy of this repository of your own to get started with!
+
+Alternatively, git clone the project:
+
+```
+git clone https://github.com/mrowrpurr/Mrowr-Purr-SKSE-Template.git
+```
+
+> _If you are new to `git`, I highly recommend using the [GitHub Desktop](https://desktop.github.com/) application. It works with GitHub, GitLab, or any hosted or local git._
+
 # Setup Plugin Name and Version
 
-Open `CMakeLists.txt` and configure your project name and version:
+Once you have the code downloaded, open `CMakeLists.txt` and configure your project name and version:
 
 ```cmake
 # Set your SKSE plugin name and version.
@@ -28,6 +47,32 @@ project(
 	LANGUAGES CXX
 )
 ```
+
+# Configure Open Source License
+
+Please make your SKSE plugin publicly available on GitHub with one of these recommended Open Source Licenses:
+
+- MIT
+- Apache 2.0
+- BSD
+
+This project includes an MIT `LICENSE` file which you can edit.
+
+I recommend MIT. CommonLibSSE is MIT. Many Skyrim projects use MIT.
+
+Open `LICENSE` and simply add your name:
+
+```
+MIT License
+
+Copyright (c) 2022 <Your Name Here>
+
+Permission is hereby granted, free of charge, to any person obtaining a copy ...
+```
+
+> You can review the [differences of Open Source Licenses](https://www.kiuwan.com/comparison-popular-open-source-licenses/) if so desired.
+>
+> _Please only use GPL licenses is you fully understand open source licenses and the impact of releasing software under GPL licenses. Otherwise - don't._
 
 # Setup Project Folder
 
