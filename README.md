@@ -216,7 +216,7 @@ SKSE::GetPapyrusInterface()->Register(PapyrusFunctions);
 In addition to being configured as a C++ CMake project,
 this project folder is also configured as a Papyrus Project.
 
-<... TODO DOCUMENTATION ...>
+... `TODO DOCUMENTATION` ...
 
 ---
 
