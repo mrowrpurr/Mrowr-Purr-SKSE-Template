@@ -1,7 +1,10 @@
 # Mrowr Purr's SKSE plugin template 😼
 
+> _If you use this template, **please make your SKSE plugin Open Source**_ ✨
+
 - [Dependencies](#)
 - [Setup Plugin Name and Version](#)
+- [Configure Open Source License](#)
 - [Setup Project Folder](#)
 - [Setup Environment Variables](#)
 - [Building the project for different versions of Skyrim](#)
