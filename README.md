@@ -151,6 +151,43 @@ This compiles the project. Any compilation errors should be visible. If there ar
 
 # Upgrading to Newer Versions of CommonLibSSE and CommonLibVR
 
+CommonLibSSE and CommonLibVR are included in the project as git submodules.
+
+The submodules are located here:
+
+```
+CommonLib/
+  AE/ --> https://github.com/powerof3/CommonLibSSE
+  SE/ --> https://github.com/powerof3/CommonLibSSE
+  VR/ --> https://github.com/mrowrpurr/CommonLibVR
+```
+
+At the time of writing, the most frequently updated versions of CommonLib are:
+- [`powerof3`](https://github.com/powerof3/CommonLibSSE/)'s **CommonLibSSE** repository with `dev` and `dev-ae` branches for SE and AE
+- [`lfrazer`](https://github.com/lfrazer/CommonLibVR)'s **CommonLibVR** repository (_which I forked and made a lazy hack to make it compile which I'll cleanup later but it works_)
+
+The way that git submodules work is:
+
+- Each submodule is pinned to a certain commit for the repository
+
+So if you want to update to the latest CommonLibSSE, here are the steps that I _currently_ recommend:
+
+```
+# Update AE to the latest dev-ae
+cd CommonLib/AE
+git checkout dev-ae
+git pull origin dev-ae
+
+# Update SE to the latest dev
+cd ../SE
+git checkout dev
+git pull origin dev
+```
+
+At the time of writing, I have AE and SE pinned to specific commits because the latest `dev` and `dev-ae` didn't compile for me so I went back just a couple of commits.
+
+For CommonLibVR, I will try to keep mrowrpurr/CommonLibVR up-to-date. Otherwise you may want to switch to a different person's CommonLibVR by [updating the submodule to point at a different remote repository](https://stackoverflow.com/a/914090).
+
 # Upgrading to Newer vcpkg Packages
 
 # Working with Papyrus scripts
