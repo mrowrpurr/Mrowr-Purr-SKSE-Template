@@ -16,6 +16,14 @@
 - [Upgrading to Newer Versions of CommonLibSSE and CommonLibVR](#upgrading-to-newer-versions-of-commonlibsse-and-commonlibvr)
 - [Upgrading to Newer vcpkg Packages](#upgrading-to-newer-vcpkg-packages)
 - [Working with Papyrus scripts](#working-with-papyrus-scripts)
+- [Writing Unit Tests for C++](#writing-unit-tests-for-c--)
+- [Example Project Features](#)
+  - [Logging](#)
+  - [Game Load Events](#)
+  - [Papyrus Interfaces](#)
+  - [Reading .ini Files](#)
+  - [Form Querying](#)
+  - [Script Reflection](#)
 
 # Dependencies
 
@@ -218,9 +226,20 @@ this project folder is also configured as a Papyrus Project.
 
 ... `TODO DOCUMENTATION` ...
 
+# Writing Unit Tests for C++
+
+... `TODO DOCUMENTATION` ...
+
+# Example Project Features
+
+... `TODO` ...
+
 ---
 
 # TODO
 
 - [ ] script to build all (AE, SE, and VR) and ideally stop on error
 - [ ] .zip packaging!
+- [ ] .ini reading
+- [ ] add a few forms of Form querying/lookup
+- [ ] add an example or two of Script reflection and function invocation
