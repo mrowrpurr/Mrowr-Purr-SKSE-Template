@@ -1,0 +1,1 @@
+scriptName ExampleProjectPlayerRef extends ReferenceAlias

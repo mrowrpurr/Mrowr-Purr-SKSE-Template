@@ -140,10 +140,17 @@ add_custom_command(
 	VERBATIM
 )
 
+file(GLOB PLUGIN_FILES "${ROOT_DIR}/*.esp" "${ROOT_DIR}/*.esm" "${ROOT_DIR}/*.esl")
+
+message("PLUGIN FILES ${PLUGIN_FILES}")
+
 # Print the paths that files will be output to when the project is built
 message("Build will output .dll and .pdb to ${DLL_FOLDER}")
-if(EXISTS Scripts)
+if(EXISTS "${ROOT_DIR}/Scripts")
 	message("Build will output Papyrus scripts to ${MOD_FOLDER}")
+endif()
+if(PLUGIN_FILES)
+	message("Plugin files will be output to ${MOD_FOLDER}")
 endif()
 
 # Copy the output .dll and debug .pdb to the configured output directory
@@ -156,3 +163,12 @@ add_custom_command(
 	COMMAND "${CMAKE_COMMAND}" -E copy_directory "${ROOT_DIR}/Source" "${MOD_FOLDER}/Source"
 	VERBATIM
 )
+
+if(PLUGIN_FILES)
+	add_custom_command(
+		TARGET "${PROJECT_NAME}"
+		POST_BUILD
+		COMMAND "${CMAKE_COMMAND}" -E copy_if_different ${PLUGIN_FILES} "${MOD_FOLDER}"
+		VERBATIM
+	)
+endif()

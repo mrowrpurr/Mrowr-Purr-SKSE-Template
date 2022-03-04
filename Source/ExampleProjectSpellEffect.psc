@@ -1,0 +1,1 @@
+scriptName ExampleProjectSpellEffect extends ActiveMagicEffect
