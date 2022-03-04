@@ -1,4 +1,4 @@
-# Mrowr Purr's SKSE plugin template
+# Mrowr Purr's SKSE plugin template 😼
 
 - [Dependencies](#)
 - [Setup Plugin Name and Version](#)
