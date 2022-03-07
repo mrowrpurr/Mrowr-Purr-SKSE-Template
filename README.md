@@ -204,6 +204,8 @@ Why? Why not just have 1 `vcpkg` globally on the system? Or 1 `vcpkg` for the re
 
 Sometimes CommonLibSSE/CommonLibVR don't work with the latest versions of public packages, so - to ensure this project tempalte **always compiles** - I have submodules for `vcpkg` for each version of Skyrim pinned to a specific version.
 
+> _This is a temporary solution. I will switch to requiring specific versions of vcpkgs. For my forks, I will switch to providing them via my vcpkg repo._
+
 To update `vcpkg` for any version of Skyrim:
 
 ```
