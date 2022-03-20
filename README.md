@@ -5,6 +5,7 @@
 > - vcpkg for everything, no submodules by default
 > - supported submodules for CommonLibSSE to stay up-to-date with latest RE efforts
 > - end-to-end tests which run SKSE tests inside the game
+> - code coverage (for C++ only - potentially separate reports for unit -vs- e2e tests, gotta try merging support)
 > - end-to-end tests for Papyrus scripts
 > - will make sure non-SKSE/Skyrim specific things work cross-platform, e.g. if you want to ship a library
 > - better CLion support for workflow related to options and compiling
