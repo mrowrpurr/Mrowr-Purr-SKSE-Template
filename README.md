@@ -38,6 +38,7 @@
   - [Reading .ini Files](#)
   - [Form Querying](#)
   - [Script Reflection](#)
+  - [Providing an API to other SKSE mods (dllexport)](#)
 
 # Dependencies
 
