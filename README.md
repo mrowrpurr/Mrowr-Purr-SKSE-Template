@@ -10,6 +10,7 @@
 > - will make sure non-SKSE/Skyrim specific things work cross-platform, e.g. if you want to ship a library
 > - better CLion support for workflow related to options and compiling
 > - integrated Papyrus Project File for compiling Papyrus scripts as well as bundling the mod for you for distribution
+> - simple version which is the simplest working plugin (rather than demonstrating tons of features)
 
 ---
 
