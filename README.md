@@ -1,3 +1,9 @@
+# [DEPRECATED]
+
+> _Updated version to come in upcoming YouTube series on SKSE development in early 2023_
+
+---
+
 > _Work in progress..._
 >
 > Upcoming features:
