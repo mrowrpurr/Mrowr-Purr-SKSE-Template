@@ -2,6 +2,8 @@
 
 > _Updated version to come in upcoming YouTube series on SKSE development in early 2023_
 
+See: https://github.com/mrowrpurr/HelloWorld_CommonLibSSE-NG
+
 ---
 
 > _Work in progress..._
